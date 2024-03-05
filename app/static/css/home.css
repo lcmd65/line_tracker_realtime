@@ -1,0 +1,40 @@
+.body {
+    background-color: #ffffff;
+}
+
+.container {
+    position: relative;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+}
+
+.user-navigation-bar {
+    margin: 0 0;
+    width: 100%;
+    height: 300px;
+}
+
+.tool-bar-listview {
+    position: absolute;
+    background-color: #ececec;
+    width: 30%;
+    height: 100%;
+    display: flex;
+}
+
+.home-button {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #000000;
+}
+
+.user-button {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #000000;
+}
