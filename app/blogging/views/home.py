@@ -1,22 +1,30 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtCore import QUrl
-from pathlib import Path
+
+from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+import os
+import json
 
 
 class HomePage(QMainWindow):
     def __init__(self):
         super().__init__()
-
         self.setWindowTitle("Home")
-        view = QWebEngineView()
+        self.view = QWebEngineView()
 
-        html_content = Path(
-            'app/templates/home.html').read_text(encoding="utf8")
+        with open("app/schema.json", "r") as file:
+            data = json.load(file)
 
-        html_content = html_content.format(
-            css_path = QUrl.fromLocalFile("app/static/css/home.css").toString())
+        self._path = data["path"]
+        self.html_path = os.path.join(self._path, "app/templates/home.html")
+        self.css_path = os.path.join(self._path, "app/static/css/home.css")
 
-        view.setHtml(html_content)
-        self.setCentralWidget(view)
+        self.view = QWebEngineView()
+        self.view.setHtml(open(self.html_path).read())
+
+            
+        self.view.loadFinished.connect(self.on_load_finished)
+        self.setCentralWidget(self.view)
+        
+    def on_load_finished(self):
+        self.view.setStyleSheet(open(self.css_path).read())
+        
