@@ -1,14 +1,27 @@
+#blogging main function of nohdata
+from flask import (
+    Blueprint,
+    request,
+    render_template,
+    session,
+    jsonify)
+import json
+import bson
 
-import flask
-import flask_caching
-from flask import Flask, session
-from flask import blueprints
-import app
 
-@app.route
+blogging = Blueprint("blogging", __name__)
 
-class HomePage():
-    def __init__(self):
-        super.__init__()
-        self.screen =
+@blogging.route('\home', methods = ["POST", "GET"])
+def home():
+    if request.method == "POST":
+        return render_template("app/templates/home.html")
         
+@blogging.route("\config", methods = ["POST", "GET"])
+def config():
+    if request.method == "POST":
+        if request.values() == "config":
+            return render_template("app/templates/configuration.html")
+        elif request.values() == "back":
+            return render_template("app/templates/home.html")
+        return render_template("app/templates/home.html")
+    
