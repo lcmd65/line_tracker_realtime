@@ -24,4 +24,8 @@ def config():
         elif request.values() == "back":
             return render_template("app/templates/home.html")
         return render_template("app/templates/home.html")
-    
+
+@blogging.route("\users", methods = ["POST", "GET"])
+def users():
+    if request.method =="POST":
+        return render_template("app/templates/user.html")
