@@ -27,7 +27,6 @@ def main():
     from app.authentication.views.authen import authen
     app.register_blueprint(home)
     app.register_blueprint(authen)
-
     application = QApplication(sys.argv)
     app_icon = QIcon("app/static/images/app-icon.png")
     application.setWindowIcon(app_icon)
